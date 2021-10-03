@@ -20,9 +20,11 @@ connection.once('open', () => {
 
 const placeRouter = require('./routes/places');
 const usersRouter = require('./routes/users');
+const groupsRouter = require('./routes/groups')
 
 app.use('/places', placeRouter);
 app.use('/users', usersRouter);
+app.use('/groups', groupsRouter)
 app.get('/', function (req, res) {
   res.send('GET request to the homepage')
 })

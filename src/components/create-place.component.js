@@ -22,7 +22,7 @@ export default class CreatePLaces extends Component {
         }
     }
 
-    componentDidMount() {  ///remove later
+    componentDidMount() {
         axios.get('http://localhost:3000/users/')
             .then(response => {
             if (response.data.length > 0) {

@@ -6,10 +6,15 @@ export default class CreateUsers extends Component {
         super(props);
     
         this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onSetRoom = this.onSetRoom.bind(this);
+        this.onSetPassword = this.onSetPassword.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     
         this.state = {
-          username: ''
+          username: '',
+          room: '',
+          password: '',
+          where: []
         }
       }
 
@@ -18,12 +23,26 @@ export default class CreateUsers extends Component {
           username: e.target.value
         })
       }
-    
+
+      onSetRoom(e) {
+        this.setState({
+          room: e.target.value
+        })
+      }
+
+      onSetPassword(e) {
+        this.setState({
+          password: e.target.value
+        })
+      }
+   
       onSubmit(e) {
         e.preventDefault();
     
         const user = {
-          username: this.state.username
+          username: this.state.username,
+          password: this.state.password,
+          room: this.state.room
         }
 
         console.log(user);
@@ -32,7 +51,9 @@ export default class CreateUsers extends Component {
             .then(res => console.log(res.data));
 
         this.setState({
-            username: ''
+            username: '',
+            password: '',
+            room: ''
     })
   }
 
@@ -51,6 +72,24 @@ export default class CreateUsers extends Component {
                     className="form-control"
                     value={this.state.username}
                     onChange={this.onChangeUsername}
+                    />
+            </div>
+            <div className="form-group">
+                <label>Password: </label>
+                <input  type="text"
+                    required
+                    className="form-control"
+                    value={this.state.password}
+                    onChange={this.onSetPassword}
+                    />
+            </div>
+            <div className="form-group">
+                <label>Group: </label>
+                <input  type="text"
+                    required
+                    className="form-control"
+                    value={this.state.room}
+                    onChange={this.onSetRoom}
                     />
             </div>
             <div className="form-group">
